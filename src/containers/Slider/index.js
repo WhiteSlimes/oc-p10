@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useData } from "../../contexts/DataContext";
 import { getMonth } from "../../helpers/Date";
 
@@ -19,14 +19,12 @@ const Slider = () => {
       setIndex((prevIndex) => (prevIndex < byDateDesc.length - 1 ? prevIndex + 1 : 0));
     }
   };
-
+  
   useEffect(() => {
     // Mettre en place un timer pour appeler nextCard toutes les 5000ms
     const intervalId = setInterval(nextCard, 5000);
-
     // Appeler nextCard immédiatement après le chargement du composant
     nextCard();
-
     // Nettoyer le timer lorsque le composant est démonté
     return () => {
       clearInterval(intervalId);
@@ -36,10 +34,10 @@ const Slider = () => {
   return (
     <div className="SlideCardList">
       {byDateDesc?.map((event, idx) => (
-        <>
+        <React.Fragment key={`${idx+1}`}>
         <div key={event.title} className={`SlideCard SlideCard--${index === idx ? "display" : "hide"}`}>
           <img src={event.cover} alt="forum" />
-          <div className="SlideCard__descriptionContainer">
+          <div className="SlideCard__descriptionContainer" >
             <div className="SlideCard__description">
               <h3>{event.title}</h3>
               <p>{event.description}</p>
@@ -61,7 +59,7 @@ const Slider = () => {
             ))}
           </div>
         </div>
-      </>
+      </React.Fragment>
       ))}
     </div>
   );

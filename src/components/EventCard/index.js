@@ -18,7 +18,7 @@ const EventCard = ({
       {...props}
     >
       <div className="EventCard__imageContainer">
-        <img data-testid="card-image-testid" src={imageSrc} alt={imageAlt} />
+        <img data-testid="card-image-testid" src={imageSrc} alt={imageAlt}/>
         <div className="EventCard__label">{label}</div>
       </div>
       <div className="EventCard__descriptionContainer">
